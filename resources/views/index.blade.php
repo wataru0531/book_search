@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -8,13 +7,6 @@
 	<title>書籍検索</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	
-	<!-- 
-		@vite
-		→ ふろんとではviteが5173で起動していて、
-			@vite(["resources/css/app.css", "resources/js/app.js"]) こうすることで、
-			これらは5373でフロントで動いているviteにレンダリングを任せますということ
-	
-	-->
 	@vite(["resources/css/app.css", "resources/js/app.js"])
 	
 	<!-- Font Awesome -->
@@ -48,268 +40,134 @@
 
 <body class="text-gray-800 min-h-screen p-4 selection:bg-gray-200">
 
-    <!-- Main Container -->
-    <main class="w-full max-w-6xl mx-auto animate-slide-up pb-20">
+	<!-- Main Container -->
+	<main class="w-full max-w-6xl mx-auto animate-slide-up pb-20">
+		<!-- Header Area -->
+		<header class="mb-8 px-2">
+				<div>
+						<p class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-1">BOOK SEARCH</p>
+						<h1 class="text-3xl font-light tracking-tight text-[#1a1a1a]">書籍検索</h1>
+				</div>
+		</header>
 
-        <!-- Header Area -->
-        <header class="mb-8 px-2">
-            <div>
-                <p class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-1">BOOK SEARCH</p>
-                <h1 class="text-3xl font-light tracking-tight text-[#1a1a1a]">書籍検索</h1>
-            </div>
-        </header>
+		<!-- Search Form -->
+		<div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 mb-6">
+			<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+				<!-- タイトル検索 -->
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">
+						<i class="fa-solid fa-book mr-2"></i>タイトル
+					</label>
+					<input type="text" placeholder="書籍タイトルを入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+				</div>
 
-        <!-- Search Form -->
-        <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 mb-6">
-            <form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <!-- タイトル検索 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fa-solid fa-book mr-2"></i>タイトル
-                    </label>
-                    <input type="text" placeholder="書籍タイトルを入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                </div>
+				<!-- 著者検索 -->
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">
+						<i class="fa-solid fa-user mr-2"></i>著者
+					</label>
+					<input type="text" placeholder="著者名を入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+				</div>
 
-                <!-- 著者検索 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fa-solid fa-user mr-2"></i>著者
-                    </label>
-                    <input type="text" placeholder="著者名を入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                </div>
+				<!-- 出版社検索 -->
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">
+						<i class="fa-solid fa-building mr-2"></i>出版社
+					</label>
+					<div class="relative">
+						<select name="publisher" class="w-full px-4 py-2 pr-10 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all bg-white text-gray-800 appearance-none cursor-pointer">
+							<option value="">すべて</option>
+							<option value="1">出版社1</option>
+							<option value="2">出版社2</option>
+							<option value="3">出版社3</option>
+						</select>
+						<!-- 矢印アイコン（SVG） -->
+						<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
+							<svg width="16" height="16" fill="none" viewBox="0 0 16 16">
+								<path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+							</svg>
+						</span>
+					</div>
+				</div>
 
-                <!-- 出版社検索 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fa-solid fa-building mr-2"></i>出版社
-                    </label>
-                    <div class="relative">
-                        <select name="publisher" class="w-full px-4 py-2 pr-10 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all bg-white text-gray-800 appearance-none cursor-pointer">
-                            <option value="">すべて</option>
-                            <option value="1">出版社1</option>
-                            <option value="2">出版社2</option>
-                            <option value="3">出版社3</option>
-                        </select>
-                        <!-- 矢印アイコン（SVG） -->
-                        <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-                            <svg width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </span>
-                    </div>
-                </div>
+				<!-- 金額検索 -->
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">
+						<i class="fa-solid fa-yen-sign mr-2"></i>金額
+					</label>
+					<div class="flex gap-2">
+						<input type="number" placeholder="最小金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+						<span class="self-center text-gray-400">〜</span>
+						<input type="number" placeholder="最大金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+					</div>
+				</div>
 
-                <!-- 金額検索 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fa-solid fa-yen-sign mr-2"></i>金額
-                    </label>
-                    <div class="flex gap-2">
-                        <input type="number" placeholder="最小金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                        <span class="self-center text-gray-400">〜</span>
-                        <input type="number" placeholder="最大金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                    </div>
-                </div>
+				<!-- 出版日検索 -->
+				<div>
+					<label class="block text-sm font-medium text-gray-700 mb-2">
+						<i class="fa-solid fa-calendar mr-2"></i>出版日
+					</label>
+					<div class="flex gap-2">
+						<input type="date" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+						<span class="self-center text-gray-400">〜</span>
+						<input type="date" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+					</div>
+				</div>
 
-                <!-- 出版日検索 -->
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">
-                        <i class="fa-solid fa-calendar mr-2"></i>出版日
-                    </label>
-                    <div class="flex gap-2">
-                        <input type="date" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                        <span class="self-center text-gray-400">〜</span>
-                        <input type="date" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
-                    </div>
-                </div>
+				<!-- 検索ボタン -->
+				<div class="flex items-end">
+					<button type="submit" class="w-full bg-[#1a1a1a] text-white px-6 py-2 rounded-lg hover:bg-black transition-all duration-200 font-medium flex items-center justify-center gap-2">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						検索
+					</button>
+				</div>
+			</form>
+		</div>
 
-                <!-- 検索ボタン -->
-                <div class="flex items-end">
-                    <button type="submit" class="w-full bg-[#1a1a1a] text-white px-6 py-2 rounded-lg hover:bg-black transition-all duration-200 font-medium flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        検索
-                    </button>
-                </div>
-            </form>
-        </div>
+		<!-- Book List -->
+		<div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
+			<div class="p-4 border-b border-gray-100">
+				<p class="text-sm font-medium text-gray-500">検索結果: <span class="text-[#1a1a1a]">5件</span></p>
+			</div>
 
-        <!-- Book List -->
-        <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
-            <div class="p-4 border-b border-gray-100">
-                <p class="text-sm font-medium text-gray-500">検索結果: <span class="text-[#1a1a1a]">5件</span></p>
-            </div>
+			<ul class="divide-y divide-gray-50">
+				@foreach($books as $book)
+					<!-- Book 1 -->
+					<li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
+						<!-- Book Cover -->
+						<div class="flex-shrink-0">
+							<div class="w-16 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-md"></div>
+						</div>
+						<!-- Book Info -->
+						<div class="flex-1 min-w-0">
+							<h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
+								{{ $book->book_name }}
+							</h3>
+							<div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
+								<div class="flex items-center gap-1.5">
+									<i class="fa-solid fa-user w-3.5 text-gray-400"></i>
+									<span>{{ $book->author }}</span>
+								</div>
+								<div class="flex items-center gap-1.5">
+									<i class="fa-solid fa-building w-3.5 text-gray-400"></i>
+									<span>技術書出版</span>
+								</div>
+								<div class="flex items-center gap-1.5">
+									<i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
+									<span class="font-medium text-gray-800">¥{{ number_format($book->price) }}</span>
+								</div>
+								<div class="flex items-center gap-1.5">
+									<i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
+									<span>{{ date("Y年n月j日", strtotime($book->publication_date)) }}</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				@endforeach
+			</ul>
+		</div>
 
-            <ul class="divide-y divide-gray-50">
-
-                <!-- Book 1 -->
-                <li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
-                    <!-- Book Cover -->
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-md"></div>
-                    </div>
-
-                    <!-- Book Info -->
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
-                            Laravel実践開発ガイド
-                        </h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-user w-3.5 text-gray-400"></i>
-                                <span>山田 太郎</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-                                <span>技術書出版</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
-                                <span class="font-medium text-gray-800">¥3,200</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
-                                <span>2024年1月15日</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Book 2 -->
-                <li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
-                    <!-- Book Cover -->
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg shadow-md"></div>
-                    </div>
-
-                    <!-- Book Info -->
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
-                            React完全入門
-                        </h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-user w-3.5 text-gray-400"></i>
-                                <span>佐藤 花子</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-                                <span>Web開発社</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
-                                <span class="font-medium text-gray-800">¥2,800</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
-                                <span>2024年3月20日</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Book 3 -->
-                <li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
-                    <!-- Book Cover -->
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-md"></div>
-                    </div>
-
-                    <!-- Book Info -->
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
-                            TypeScript実践プログラミング
-                        </h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-user w-3.5 text-gray-400"></i>
-                                <span>鈴木 一郎</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-                                <span>プログラミング出版</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
-                                <span class="font-medium text-gray-800">¥3,500</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
-                                <span>2024年2月10日</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Book 4 -->
-                <li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
-                    <!-- Book Cover -->
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-20 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg shadow-md"></div>
-                    </div>
-
-                    <!-- Book Info -->
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
-                            Docker/Kubernetes完全ガイド
-                        </h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-user w-3.5 text-gray-400"></i>
-                                <span>田中 次郎</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-                                <span>インフラ技術社</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
-                                <span class="font-medium text-gray-800">¥4,200</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
-                                <span>2024年4月5日</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Book 5 -->
-                <li class="book-item group flex items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
-                    <!-- Book Cover -->
-                    <div class="flex-shrink-0">
-                        <div class="w-16 h-20 bg-gradient-to-br from-red-400 to-red-600 rounded-lg shadow-md"></div>
-                    </div>
-
-                    <!-- Book Info -->
-                    <div class="flex-1 min-w-0">
-                        <h3 class="text-lg font-medium text-gray-800 mb-1.5 group-hover:text-[#3b82f6] transition-colors">
-                            Vue.js 3 実践開発
-                        </h3>
-                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-gray-600">
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-user w-3.5 text-gray-400"></i>
-                                <span>高橋 三郎</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-                                <span>フロントエンド出版</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>
-                                <span class="font-medium text-gray-800">¥2,900</span>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <i class="fa-solid fa-calendar w-3.5 text-gray-400"></i>
-                                <span>2024年5月12日</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-
-    </main>
+	</main>
 
 </body>
 

@@ -1,9 +1,6 @@
-
-<!-- 
-	✅ Routingを行う
--->
-
 <?php
+
+// Routingを記述
 
 use Illuminate\Support\Facades\Route;
 

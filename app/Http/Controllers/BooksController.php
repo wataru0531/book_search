@@ -8,8 +8,12 @@ use App\Models\Book;
 
 class BooksController extends Controller {
   public function index(){
-		$book = Book::all(); // 全件取得
-		dd($book);
+		$books = Book::all(); // 全件取得
+		// dd($books);
+
+		return view("index", [
+			"books" => $books,
+		]);
 	}
 
 
