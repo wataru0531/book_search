@@ -12,7 +12,7 @@ class BooksController extends Controller {
 		// dd($books);
 
 		return view("index", [
-			"books" => $books,
+			"books" => $books, // bladeに$booksを渡す
 		]);
 	}
 
