@@ -96,11 +96,14 @@
 						<i class="fa-solid fa-building mr-2"></i>出版社
 					</label>
 					<div class="relative">
-						<select name="publisher" class="w-full px-4 py-2 pr-10 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all bg-white text-gray-800 appearance-none cursor-pointer">
+						<select 
+							name="publisher" 
+							class="w-full px-4 py-2 pr-10 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all bg-white text-gray-800 appearance-none cursor-pointer"
+						>
 							<option value="">すべて</option>
-							<option value="1">出版社1</option>
-							<option value="2">出版社2</option>
-							<option value="3">出版社3</option>
+							@foreach($publishers as $publisher)
+							<option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+							@endforeach
 						</select>
 						<!-- 矢印アイコン（SVG） -->
 						<span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">

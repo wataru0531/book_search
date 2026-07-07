@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
-
+use App\Models\Publisher;
 
 class BooksController extends Controller {
   public function index(){
@@ -37,8 +37,12 @@ class BooksController extends Controller {
 		// dd($books);
 		// publisherのデータは、relationsに格納
 
+		// 出版社データを取得する → index.blade.phpで使えるようにする
+		$publishers = Publisher::orderBy("name_kana")->get(); // 五十音順
+		// dd($publishers);
 		return view("index", [
 			"books" => $books, // bladeに$booksを渡す
+			"publishers" => $publishers,
 		]);
 	}
 
