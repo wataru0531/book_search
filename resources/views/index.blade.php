@@ -50,26 +50,47 @@
 				</div>
 		</header>
 
-		<!-- Search Form -->
+		<!-- 検索フォーム -->
+		<!-- 
+			action → どのURLにデータを送るか。
+		-->
 		<div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 mb-6">
-			<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-				<!-- タイトル検索 -->
+			<form 
+				action="{{ route('books.index') }}"
+				method="GET"
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+			>
+				<!-- ✅　書籍タイトル -->
 				<div>
 					<label class="block text-sm font-medium text-gray-700 mb-2">
 						<i class="fa-solid fa-book mr-2"></i>タイトル
 					</label>
-					<input type="text" placeholder="書籍タイトルを入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+					<input 
+						type="text" 
+						placeholder="書籍タイトルを入力" 
+						class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all"
+						name="book_name"
+						value="{{ request()->input('book_name') }}"
+					>
 				</div>
-
-				<!-- 著者検索 -->
+				<!-- ✅ 著者検索 -->
 				<div>
 					<label class="block text-sm font-medium text-gray-700 mb-2">
 						<i class="fa-solid fa-user mr-2"></i>著者
 					</label>
-					<input type="text" placeholder="著者名を入力" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+					<!--
+						request()->input('author') ... リクエストのデータを取得
+						👉 request('author')と省略できる
+					-->
+					<input 
+						type="text" 
+						placeholder="著者名を入力" 
+						class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all"
+						name="author"
+						value="{{ request('author') }}"
+					>
 				</div>
-
-				<!-- 出版社検索 -->
+				<!-- ✅ 出版社検索 -->
 				<div>
 					<label class="block text-sm font-medium text-gray-700 mb-2">
 						<i class="fa-solid fa-building mr-2"></i>出版社
@@ -150,7 +171,11 @@
 								</div>
 								<div class="flex items-center gap-1.5">
 									<i class="fa-solid fa-building w-3.5 text-gray-400"></i>
-									<span>技術書出版</span>
+									<!-- 
+										出版社データ
+										リレーションを貼ったPublisherからデータを取得
+									-->
+									<span>{{ $book->publisher->name }}</span>
 								</div>
 								<div class="flex items-center gap-1.5">
 									<i class="fa-solid fa-yen-sign w-3.5 text-gray-400"></i>

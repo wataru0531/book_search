@@ -10,7 +10,7 @@ return new class extends Migration {
    */
   public function up(): void {
     Schema::table('books', function (Blueprint $table) {
-      // ⭐️ booksテーブルのpublisher_id を作成して、 publisherのidを紐づける
+      // ⭐️ booksテーブルにpublisher_idカラムを作成して、 publisherのidを紐づける
       $table->foreignId("publisher_id")->constrained("publishers")->after("id");
     });
   }

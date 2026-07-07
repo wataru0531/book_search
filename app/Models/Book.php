@@ -18,7 +18,8 @@ class Book extends Model {
 		"price",
 	];
 
-	// ✅ Booksテーブルは、Publisherテーブルの子テーブル
+	// ✅ Bookテーブルは、Publisherテーブルの子テーブル
+	// 👉 Bookは、ある出版社から出版されている。
 	public function publisher (){
 		return $this->belongsTo(Publisher::class);
 	}
