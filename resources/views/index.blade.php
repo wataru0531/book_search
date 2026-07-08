@@ -79,7 +79,9 @@
 						<i class="fa-solid fa-user mr-2"></i>著者
 					</label>
 					<!--
-						request()->input('author') ... リクエストのデータを取得
+						request()->input('author')
+						→ ブラウザから送られてきたリクエスト(HTTPリクエスト)を取り出すための関数
+						送信後もその値をinputに表うじできる
 						👉 request('author')と省略できる
 					-->
 					<input 
@@ -102,7 +104,16 @@
 						>
 							<option value="">すべて</option>
 							@foreach($publishers as $publisher)
-							<option value="{{ $publisher->id }}">{{ $publisher->name }}</option>
+								<!-- 
+									request('publisher) ... 送信したoptionの値
+									selectedをつけることで送信後も選択した値を表示できる
+								-->
+								<option 
+									value="{{ $publisher->id }}"
+									{{ request('publisher') == $publisher->id ? 'selected' : '' }}
+								>
+									{{ $publisher->name }}
+								</option>
 							@endforeach
 						</select>
 						<!-- 矢印アイコン（SVG） -->
@@ -114,15 +125,29 @@
 					</div>
 				</div>
 
-				<!-- 金額検索 -->
+				<!-- ✅ 金額検索 -->
 				<div>
 					<label class="block text-sm font-medium text-gray-700 mb-2">
 						<i class="fa-solid fa-yen-sign mr-2"></i>金額
 					</label>
 					<div class="flex gap-2">
-						<input type="number" placeholder="最小金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+						<!-- 最小金額 -->
+						<input 
+							type="number" 
+							placeholder="最小金額" 
+							class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all"
+							name="price_min"
+							value={{ request('price_min') }}
+						>
 						<span class="self-center text-gray-400">〜</span>
-						<input type="number" placeholder="最大金額" class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all">
+						<!-- 最大金額 -->
+						<input 
+							type="number" 
+							placeholder="最大金額" 
+							class="w-full px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1a1a1a] focus:border-transparent transition-all"
+							name="price_max"
+							value={{ request('price_max') }}
+							>
 					</div>
 				</div>
 
